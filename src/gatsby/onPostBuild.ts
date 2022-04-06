@@ -74,10 +74,10 @@ const parsePathSlug = (slug: string) => {
     );
 
     const { platform, sub_platform, step } = pathMatch.groups;
-    let sub = `performance-onboarding.${sub_platform}.${step}`;
+    let sub = `performance-onboarding-${sub_platform}-${step}`;
 
     if (platform === pathMatch.groups.sub_platform) {
-      sub = `performance-onboarding.${step}`;
+      sub = `performance-onboarding-${step}`;
     }
 
     return {
