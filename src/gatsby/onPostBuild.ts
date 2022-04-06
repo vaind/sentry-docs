@@ -73,7 +73,9 @@ const parsePathSlug = (slug: string) => {
       /^\/(?<platform>[^/]+)\/performance-onboarding\/(?<sub_platform>[^/]+)\/(?<step>[^/]+)\/$/
     );
 
-    const { platform, sub_platform, step } = pathMatch.groups;
+    const { platform, sub_platform } = pathMatch.groups;
+    let { step } = pathMatch.groups;
+    step = step.replaceAll(".", "-");
     let sub = `performance-onboarding-${sub_platform}-${step}`;
 
     if (platform === pathMatch.groups.sub_platform) {
@@ -105,7 +107,7 @@ const writeJson = async (
   const platforms = [];
   const indexJson = {};
   nodes.forEach(node => {
-    const {platform:main, sub} = parsePathSlug(node.fields.slug);
+    const { platform: main, sub } = parsePathSlug(node.fields.slug);
 
     if (!indexJson[main]) indexJson[main] = {};
     if (!node.frontmatter.doc_link) {
