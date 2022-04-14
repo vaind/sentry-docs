@@ -72,7 +72,6 @@ const parsePathSlug = (slug: string) => {
     const pathMatch = slug.match(
       /^\/(?<platform>[^/]+)\/performance-onboarding\/(?<sub_platform>[^/]+)\/(?<step>[^/]+)\/$/
     );
-    console.log('slug', slug);
     const { platform, sub_platform } = pathMatch.groups;
     let step = pathMatch.groups.step;
     step = String(step).replace(new RegExp(".", 'g'), "-");
